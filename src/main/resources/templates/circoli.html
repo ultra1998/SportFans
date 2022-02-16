@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<style>
+		html {
+			background: url(/images/background4.jpg) no-repeat center center fixed;
+			background-size: cover;
+			height: 100%;
+			overflow-x: hidden;
+		}
+	</style>
+	<title>Circoli</title>
+</head>
+
+<body>
+
+	<div style="margin-top: 30px; margin-left: 480px;">
+		<img src="/images/logo.png"></img>
+	</div>
+	<div style="text-align: center; margin-top: 20px; ">
+		<div style="font-weight: bold; color: white; margin-top:45px;">
+			<h1>I nostri Circoli</h1>
+			<h4>Qui troverai una lista di circoli di cui potresti diventare un membro:</h4>
+		</div>
+		<section>
+			<div style="font-weight: bold; margin-bottom: 15px; background-color: lightgray;  margin:0 auto; width: 800px;"
+				th:each="circolo : ${circoli}">
+				Nome: <span th:text="*{circolo.nomeCircolo}">qui-va-titolo</span><br>
+				Indirizzo: <span th:text="*{circolo.indirizzo}">qui-va-indirizzo</span><br>
+				Email: <span th:text="*{circolo.email}">qui-va-email</span><br>
+				Recapito: <span th:text="*{circolo.recapito}">qui-va-recapito</span>
+				<p></p>
+			</div>
+		</section>
+		<div>
+			<span th:if="${credentials.role == 'ADMIN'}"><a href="/addCircolo"><button>+</button></a></span>
+		</div>
+		<a href="/default"><button
+				style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px; margin-top: 30px;">Home</button></a>
+	</div>
+
+</body>
+
+</html>

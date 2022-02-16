@@ -1,0 +1,30 @@
+<html>
+
+<body>
+    <div style="text-align: center; margin-top:100px ;">
+        <img style="height: 250px;" src="/images/pericolo.png"></img>
+        <h1>Attenzione <span th:text="${errore}"></span></h1>
+        <a href="/addPrenotazione"><button style="height: 50px; font-size: 20px; border-radius: 10px 10px 10px 10px; width:100px;">Torna alla form</button></a>
+    </div>
+<div style="display: flex;">
+    <div style="margin-left:10%;">
+        <p><h3><b>Il campo risulta essere occupato nei seguenti momenti: </b></h3></p>
+        <ul>
+            <li th:each="prenotazione: ${campoOccupato}"
+                th:text="|${#temporals.format(prenotazione.data,'dd/MM/yyyy')} orario: ${prenotazione.oraInizio}-${prenotazione.oraFine}|">
+            </li>
+        </ul>
+    </div>
+
+    <div style="margin-left:10%;" th:if="${maestroOccupato!=null}">
+        <p><h3><b>Il maestro risulta essere occupato nei seguenti momenti: </b></h3></p>
+        <ul>
+            <li th:each="prenotazione: ${maestroOccupato}"
+                th:text="|${#temporals.format(prenotazione.data,'dd/MM/yyyy')} orario: ${prenotazione.oraInizio}-${prenotazione.oraFine}|">
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+
+</html>

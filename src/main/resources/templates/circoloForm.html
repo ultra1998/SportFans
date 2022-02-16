@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Aggiungi Circolo</title>
+    <style>
+        html{
+            background: url(/images/backgroundForm.jpg) no-repeat center center fixed;
+            background-size: cover;
+            height: 100%;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <header></header>
+    <div style="text-align: center; margin-top: 5%;">
+        <span th:if="${credentials.role == 'ADMIN'}">
+        <form th:action="@{/circolo}" method="POST">
+            <h4 style="font-size: 40px;">Aggiungi Circolo</h4>
+            <section>
+                <div>
+                    <input style="height:40px; width:30%; border-radius: 74px; text-align: center;" type="text" required th:field="*{circolo.nomeCircolo}" placeholder="nome del circolo">
+                    <span th:if="${#fields.hasErrors('circolo.nomeCircolo')}" th:errors="${circolo.nomeCircolo}"></span>
+                </div>
+                <br>
+                <div>
+                    <input style="height:40px; width:30%; border-radius: 74px; text-align: center;" type="text" required th:field="*{circolo.indirizzo}" placeholder="indirizzo">
+                    <span th:if="${#fields.hasErrors('circolo.indirizzo')}" th:errors="*{circolo.indirizzo}"></span>
+                </div>
+                <br>
+                <div>
+                    <input style="height:40px; width:30%; border-radius: 74px; text-align: center;" type="text" required th:field="*{circolo.recapito}" placeholder="recapito">
+                    <span th:if="${#fields.hasErrors('circolo.recapito')}" th:errors="*{circolo.recapito}"></span>
+                </div>
+                <br>
+                <div>
+                    <input style="height:40px; width:30%; border-radius: 74px; text-align: center;" type="text" th:field="*{circolo.email}" placeholder="email">
+                    <span th:if="${#fields.hasErrors('circolo.email')}" th:errors="*{circolo.email}"></span>
+                </div>
+                <br>
+                <span style="margin-top:10px;">
+                    <button style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px; margin-top: 30px;" type="submit">
+                        Inserisci
+                    </button>
+                </span>
+            </section>
+        </form>
+        </span>
+        <span th:if="${credentials.role == 'DEFAULT'}">PURTROPPO NON GODI DEI PERMESSI PER ACCEDERE ALLA RISORSA</span>
+            <a href="/default"><button style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px; margin-top: 30px;">
+        Home</button></a>
+        <a href="/circolo"> <button style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px; margin-top: 30px;">Torna indietro</button></a>
+    </div>
+    <footer></footer>
+</body>
+
+</html>

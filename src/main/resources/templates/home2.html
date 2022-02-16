@@ -1,0 +1,53 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            background: url(/images/background2.jpg) no-repeat center center fixed;
+            background-size: cover;
+            height: 100%;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <img style="height: 75px;" src="/images/logo.png"></img>
+    </div>
+    <div style="text-align: center; font-size: 20px; color: white;">
+        <p><b>Ciao </b><span th:text="${credentials.username}">qui-va-username</span>!</p>
+        <p><b>Appartieni al circolo: </b><span th:text="${utente.circolo.nomeCircolo}">qui-va-circolo</span>!</p>
+        <form th:action="@{/disiscrizioneCircolo}" method="POST">
+            <button
+                style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px; font-size: 15px; color: black;">Disiscriviti</button>
+        </form>
+    </div>
+    <br>
+
+    <div style="display:flex; width: 1100px; margin-left: 280px;">
+        <div style="margin-right: 50px;">
+            <a href="/getCampo"> <img src="/images/campi.jpg"></img></a>
+        </div>
+        <div style="margin-left: 50px;">
+            <a href="/prenotazione"> <img src="/images/prenotaUnCampo.jpg"></img></a>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px;" th:if="${credentials.role=='ADMIN'}">
+        <a href="/addMaestro">
+            <button style="border-radius: 10px 10px 10px 10px; width:150px; height: 40px; font-size: 13px;">Aggiungi un
+                maestro</button>
+        </a>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <form th:action="@{/logout}" method="POST">
+            <button
+                style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px; font-size: 15px;">Logout</button>
+        </form>
+    </div>
+</body>
+
+</html>

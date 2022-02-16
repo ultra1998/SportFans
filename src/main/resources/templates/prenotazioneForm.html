@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Prenota un campo</title>
+    <style>
+        html{
+            background: url(/images/backgroundForm.jpg) no-repeat center center fixed;
+            background-size: cover;
+            height: 100%;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <header></header>
+    <div style="text-align: center; margin-top: 5%;">
+        <form th:action="@{/prenotazione}" method="POST">
+            <h4 style="font-size: 40px;">PRENOTA UN CAMPO</h4>
+            <section>
+                <div>
+                    <b> Data: </b><p></p>
+                    <input style="height:40px; width:30%; border-radius: 74px; text-align: center;" type="date" required th:field="*{prenotazione.data}" placeholder="Data">
+                    <span th:if="${#fields.hasErrors('prenotazione.data')}" th:errors="${prenotazione.data}"></span>
+                </div>
+                <br>
+                <div>
+                    <b> Ora di inizio: </b><p></p>
+                    <input style="height:40px; width:30%; border-radius: 74px; text-align: center;" type="number" min="10" max="23" required th:field="*{prenotazione.oraInizio}" placeholder="Orario di inizio" value="10">
+                    <span th:if="${#fields.hasErrors('prenotazione.oraInizio')}" th:errors="*{prenotazione.oraInizio}"></span>
+                </div>
+                <br>
+                <div>
+                    <b> Ora di fine: </b><p></p>
+                    <input style="height:40px; width:30%; border-radius: 74px; text-align: center;" type="number" min="11" max="24" required th:field="*{prenotazione.oraFine}" placeholder="Orario di fine" value="11">
+                    <span th:if="${#fields.hasErrors('prenotazione.oraFine')}" th:errors="*{prenotazione.oraFine}"></span>
+                </div>
+               <div style="margin-top: 20px; padding-left: 5px;">
+                   <b> Campi disponibili: </b>
+                    <select name="campo" roleId="campo" id="campo" th:field="*{prenotazione.campo}">
+                        <option value="">---Campo---</option>
+                        <option th:each="campo : ${campi}" th:value="${campo.id}" th:text="${campo.numeroCampo} +' '+ ${campo.sport}">
+                        </option>
+                    </select>
+                    <b> Maestri disponibili: </b>
+                    <select name="maestro" roleId="maestro" id="maestro" th:field="*{prenotazione.maestro}">
+                        <option value="">---Maestro---</option>
+                        <option th:each="maestro : ${maestri}" th:value="${maestro.id}" th:text="${maestro.nome} +' '+ ${maestro.cognome} +' '+ ${maestro.sportInsegnato}">
+                        </option>
+                    </select>
+                </div>
+                <span style="margin-top:10px;">
+                    <button style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px; margin-top: 30px;" type="submit">
+                        Prenota
+                    </button>
+                </span>
+            </section>
+        </form>
+        <a href="/default"><button type="submit" style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px; margin-top: 30px;">Home</button></a>
+    </div>
+    <footer></footer>
+</body>
+
+</html>

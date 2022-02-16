@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<style>
+		html {
+			background: url(/images/background4.jpg) no-repeat center center fixed;
+			background-size: cover;
+			height: 100%;
+			overflow-x: hidden;
+		}
+	</style>
+	<title>Campi</title>
+</head>
+
+<body>
+
+	<div style="margin-top: 30px; margin-left: 480px;">
+		<img src="/images/logo.png"></img>
+	</div>
+	<div style="text-align: center; margin-top: 20px;">
+		<div style="font-weight: bold; font-size: 20px; color: white;">
+			<p>Campi del <span th:text="${utente.circolo.nomeCircolo}"></span></p>
+		</div>
+		<section>
+			<div style="padding-top:7px; font-weight: bold; margin-bottom: 15px; background-color: lightgray; margin:0 auto; width: 1000px;"
+				th:each="campo : ${campi}">
+				Numero campo: <span th:text="*{campo.numeroCampo}">qui-va-numeroCampo</span><br>
+				Terreno: <span th:text="*{campo.terreno}">qui-va-terreno</span><br>
+				Sport: <span th:text="*{campo.sport}">qui-va-sport</span><br>
+				Prezzo orario: <span th:text="*{campo.prezzoOrario}">qui-va-prezzoOrario</span>
+			</div>
+			<p></p>
+		</section>
+		<div>
+			<span th:if="${credentials.role == 'ADMIN'}"><a href="/addCampo"><button>+</button></a></span>
+		</div>
+		<a href="/default"><button
+				style="margin-top: 20px;border-radius: 10px 10px 10px 10px; width:100px; height: 40px; margin-top: 30px;">Home</button></a>
+	</div>
+
+</body>
+
+</html>

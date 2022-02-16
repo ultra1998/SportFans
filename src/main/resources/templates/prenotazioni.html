@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Prenotazioni</title>
+	<style>
+		html {
+			background: url(/images/background4.jpg) no-repeat center center fixed;
+			background-size: cover;
+			height: 100%;
+			overflow-x: hidden;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div style="margin-top: 30px; margin-left: 480px;">
+		<img src="/images/logo.png"></img>
+	</div>
+	<div style="text-align: center; margin-top: 20px;">
+		<div style="font-weight: bold; font-size: 20px; color: white;">
+			<p>Le tue prenotazioni</p>
+		</div>
+		<section>
+			<div style="font-weight: bold; margin-bottom: 15px; background-color: lightgray; margin:0 auto; width: 1000px;"
+				th:each="prenotazione : ${prenotazioni}">
+				<form th:action="@{/delete}" method="POST">
+					Circolo: <span th:text="*{prenotazione.campo.circolo.nomeCircolo}">qui-va-nomeCircolo</span><br>
+					Data: <span
+						th:text="${#temporals.format(prenotazione.data,'dd/MM/yyyy')}">qui-va-numeroCampo</span><br>
+					Orario di inizio: <span th:text="*{prenotazione.oraInizio}">qui-va-terreno</span><br>
+					Orario di fine: <span th:text="*{prenotazione.oraFine}">qui-va-sport</span><br>
+					Campo: <span
+						th:text="*{prenotazione.campo.numeroCampo}+' '+*{prenotazione.campo.sport}">qui-va-campo</span><br>
+					Maestro: <span th:if="${prenotazione.maestro?.nome != null}"
+						th:text="*{prenotazione.maestro?.nome}+' '+*{prenotazione.maestro?.cognome}">qui-va-maestro</span><br>
+					<!--<a th:href=><button type="submit" class="btn btn-secondary" style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px;">Delete</button></a>-->
+
+					<select name="prenotazione" id="prenotazione">
+						<option th:value="${prenotazione.id}">Rimuovi</option>
+					</select>
+
+					<button type="submit">Conferma</button>
+				</form>
+				<p></p>
+			</div>
+		</section>
+		<a href="/addPrenotazione"><button>+</button></a><br>
+		<a href="/default"><button type="submit"
+				style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px; margin-top: 80px;">Home</button></a><br>
+	</div>
+
+</body>
+
+</html>

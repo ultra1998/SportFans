@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/register.css}" rel="stylesheet">
+
+<head>
+    <title>Registrazione Maestro</title>
+</head>
+<body>
+    <header></header>
+    <div style="text-align: center; margin-top: 5%;">
+        <span th:if="${credentials.role == 'ADMIN'}">
+        <form th:action="@{/maestro}" method="POST">
+            <h4>Aggiungi Maestro</h4>
+            <section>
+                <div class="form-group">
+                    <input type="text" required th:field="*{maestro.nome}" placeholder="Nome">
+                    <span th:if="${#fields.hasErrors('maestro.nome')}" th:errors="${maestro.nome}"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" required th:field="*{maestro.cognome}" placeholder="Cognome">
+                    <span th:if="${#fields.hasErrors('maestro.cognome')}" th:errors="*{maestro.cognome}"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" required th:field="*{maestro.recapito}" placeholder="Recapito">
+                    <span th:if="${#fields.hasErrors('maestro.recapito')}" th:errors="*{{maestro.recapito}"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" th:field="*{maestro.prezzoOraLezione}" placeholder="PrezzoOraLezione">
+                    <span th:if="${#fields.hasErrors('maestro.prezzoOraLezione')}" th:errors="*{maestro.prezzoOraLezione}"></span>
+                </div>
+                 <div class="form-group">
+                    <input type="text" th:field="*{maestro.sportInsegnato}" placeholder="sportInsegnato">
+                    <span th:if="${#fields.hasErrors('maestro.sportInsegnato')}" th:errors="*{maestro.sportInsegnato}"></span>
+                </div>
+
+                <span style="margin-top:10px;">
+                    <button style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px;" type="submit">
+                        Aggiungi
+                    </button>
+                </span>
+            </section>
+        </form>
+        <a href="/default"><button type="submit" class="btn btn-secondary" style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px; margin-top: 30px;">Home</button></a>
+        </span>
+        <span th:if="${credentials.role == 'DEFAULT'}">NON HAI I PERMESSI PER ACCEDERE ALLA RISORSA</span>
+    </div>
+    <footer></footer>
+</body>
+
+</html>
